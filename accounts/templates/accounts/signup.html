@@ -1,30 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h1>Sign up!!</h1>
+<div class="container text-center">
+<h2>Sign up!</h2><br />
+<h6>Type correct username and password. <br /> Password length must be between 8 and 20 letters.</h6>
     {% if error %}
         <br /><h6 class="text-danger">{{ error }}</h6>
 
     {% endif %}<br />
+    <div class="row justify-content-center">
     <form method="POST" action="{% url 'signup' %}" class="form-singin justify-content-center">
     {% csrf_token %}
-    <div class="form-label-group row col-sm-3">
+    <div class="form-label-group row">
         <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" required autofocus>
     </div>
         <br/>
-    <div class="form-label-group row col-sm-3 text-center">
+    <div class="form-label-group row">
         <input type="password" name="password1" class="form-control" placeholder="Password" aria-label="Password" required>
     </div>
         <br/>
-    <div class="form-label-group row col-sm-3">
+    <div class="form-label-group row">
         <input type="password" name="password2" class="form-control" placeholder="Confirm password" aria-label="Password" required>
     </div>
         <br/>
 
-    <input class="btn btn-primary btn-sm-3" type="submit" value="Sign up!" />
+    <input class="btn btn-success btn-sm-3" type="submit" value="Sign up!" />
 
 
     </form>
-
+    </div></div>
 
 {% endblock %}

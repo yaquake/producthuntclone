@@ -3,25 +3,32 @@
 
 
 
-
-<h1>Log in!</h1>
+<div class="container text-center">
+<h2>Log in!</h2>
+<h6>Type correct username and password. If you are not registered, please register.</h6>
+<img src="{% url 'static/compass.png' %}" />
     {% if error %}
         <br /><h6 class="text-danger">{{ error }}</h6>
 
     {% endif %}<br />
+    <div class="row justify-content-center">
     <form method="POST" action="{% url 'login' %}" class="form-singin">
 
     {% csrf_token %}
-        <div class="form-label-group row col-sm-3">
+        <div class="form-label-group row">
             <input type="text" name="username" class="form-control" placeholder="username" aria-label="Username" required autofocus>
         </div>
         <br/>
-        <div class="form-label-group row col-sm-3">
+        <div class="form-label-group row">
         <input type="password" name="password" class="form-control" placeholder="password" aria-label="Password" required>
     </div>
 
     <br />
-    <input class="btn btn-primary btn-sm-3" type="submit" value="Login!" />
+    <input class="btn btn-sm-3 btn-success" type="submit" value="Login!" />
     </form>
+
+    </div><br /> <br />
+<div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+</div>
 
 {% endblock %}
