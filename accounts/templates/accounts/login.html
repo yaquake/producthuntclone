@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+{% load staticfiles %}
 
 <div class="container text-center">
 <h2>Log in!</h2>
-<h6>Type correct username and password. If you are not registered, please register.</h6>
-<img src="{% url 'static/compass.png' %}" />
+<h6>Type correct username and password. <br /> If you are not registered, please register. <img src="{% static 'compass.png' %}" height="15" width="15" /></h6>
+
     {% if error %}
         <br /><h6 class="text-danger">{{ error }}</h6>
 
@@ -28,7 +28,6 @@
     </form>
 
     </div><br /> <br />
-<div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 </div>
 
 {% endblock %}

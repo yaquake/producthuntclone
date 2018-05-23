@@ -18,5 +18,5 @@ class Product(models.Model):
     def summary(self):
         return self.body[:100]
 
-    def pud_date_pretty(self):
+    def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')

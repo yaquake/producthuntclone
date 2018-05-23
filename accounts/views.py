@@ -10,20 +10,21 @@ def signup(request):
             if 8 <= len(request.POST['password1']) <= 20:
                 try:
                     user = User.objects.get(username=request.POST['username'])
-                    return render(request, 'accounts/signup.html', {'error': 'Username has already been taken'})
+                    return render(request, 'accounts/signup.html', {'error': 'Username has already been taken', 'title': 'Sign up'})
                 except User.DoesNotExist:
                     user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                     auth.login(request, user)
                     return redirect('home')
             else:
-                return render(request, 'accounts/signup.html', {'error': 'Password must be between 8 and 20 letters.'})
+                return render(request, 'accounts/signup.html', {'error': 'Password must be between 8 and 20 letters.',
+                                                                'title': 'Sign up'})
 
         else:
-            return render(request, 'accounts/signup.html', {'error': 'Passwords must match'})
+            return render(request, 'accounts/signup.html', {'error': 'Passwords must match', 'title': 'Sign up'})
 
     else:
         # User wants to enter
-        return render(request, 'accounts/signup.html')
+        return render(request, 'accounts/signup.html', {'title': 'Sign up'})
 
 
 def login(request):
@@ -33,10 +34,10 @@ def login(request):
             auth.login(request, user)
             return redirect('home')
         else:
-            return render(request, 'accounts/login.html', {'error': 'Username or password is incorrect'})
+            return render(request, 'accounts/login.html', {'error': 'Username or password is incorrect', 'title': 'Login'})
 
     else:
-        return render(request, 'accounts/login.html')
+        return render(request, 'accounts/login.html', {'title': 'Login'})
 
 
 def logout(request):

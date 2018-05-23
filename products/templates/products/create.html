@@ -6,7 +6,7 @@
     <br />
     <br />
 {% endif %}
-
+<div class="container text-center">
 <h1>Create!</h1><br />
     <div class="row justify-content-center">
     <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data" class="form-signin">
@@ -15,19 +15,22 @@
         <input type="text" name="title" class="form-control" placeholder="Title" required autofocus /><br />
     </div><br />
     <div class="form-label-group row">
-        <input type="text" name="body" class="form-control" placeholder="Text" required /><br />
+{#        <input type="textarea" name="body" class="form-control" placeholder="Text" required /><br />#}
+        <textarea class="form-control" aria-label="With textarea" name="body" placeholder="Text" required></textarea>
     </div><br />
     <div class="form-label-group row">
         <input type="text" name="url" class="form-control" placeholder="URL" required /><br />
     </div><br />
-    <div class="form-label-group row">
-        <input type="file" name="icon" class="form-control" placeholder="Icon" required /><br />
-    </div><br />
-    <div class="form-label-group row">
-        <input type="file" name="image" class="form-control" placeholder="Image" required /><br />
-    </div>
+    <div class="custom-file form-label-group row">
+        <input type="file" name="icon" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose icon</label>
+    </div><br/><br />
+    <div class="custom-file form-label-group row">
+        <input type="file" name="image" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose image</label>
+    </div><br/>
     <br />
     <input class="btn btn-success" type="submit" value="Add product" />
     </form>
-</div>
+</div></div>
 {% endblock %}
