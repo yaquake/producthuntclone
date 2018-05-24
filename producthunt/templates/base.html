@@ -22,7 +22,7 @@
 
     <header>
 
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #464e5d">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #464e5d">
             <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'letter.png' %}" height="30" width="30" class="d-inline-block align-top" />  Product Hunt</a>
@@ -49,7 +49,7 @@
       </nav>
         </div>
     </header>
-    <br />
+    <br /><br /><br />
     <div class="container">
 
         {% block content %}
