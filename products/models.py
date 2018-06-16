@@ -11,7 +11,7 @@ class Product(models.Model):
     icon = models.ImageField(upload_to='images/')
     body = models.TextField()
     hunter = models.ForeignKey(User, on_delete=models.CASCADE)
-    votenames = models.TextField(default=False)
+    votenames = models.TextField()
     category = models.CharField(max_length=25, default=False)
 
     def __str__(self):

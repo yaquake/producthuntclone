@@ -52,6 +52,7 @@ def detail(request, product_id):
 def upvote(request, product_id):
     if request.method == 'POST':
         product = get_object_or_404(Product, pk=product_id)
+        print(str(User.username))
         if str(User.username) not in product.votenames:
             product.votes_total += 1
             product.votenames += " " + str(User.username)
@@ -64,14 +65,15 @@ def search(request):
         what = request.POST['pole']
         where = request.POST['gridRadios']
         if where == "option1":
-            result = Product.objects.filter(title__contains=what)
-            return render(request, "products/search.html", {"result": result})
+            result = Product.objects.filter(title__icontains=what)
+            return render(request, "products/search.html", {"result": result, 'title': 'Product Hunt || Search',
+                                                            'search': "Search result:"})
         if where == "option2":
-            result = Product.objects.filter(body__contains=what)
-            return render(request, "products/search.html", {"result": result})
-
+            result = Product.objects.filter(body__icontains=what)
+            return render(request, "products/search.html", {"result": result, 'title': 'Product Hunt || Search',
+                                                            'search': "Search result:"})
     else:
-        return render(request, "products/search.html")
+        return render(request, "products/search.html", {'title': 'Product Hunt || Search', 'search': ''})
 
 
 

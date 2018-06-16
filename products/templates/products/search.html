@@ -28,8 +28,8 @@
 <br />
 
 
-{% if result %}
-<h2>Search results:</h2><hr>
+{#{% if result %}#}
+<h2>{{ search }}</h2><hr>
 {% for product in result.all %}
     <div class="row pt-3">
     <div class="col-2" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer">
@@ -53,7 +53,7 @@
 <input type="hidden">
 </form>
 {% endfor %}
-{% else %}
-    <h2>Nothing's been found</h2>
-{% endif %}
+{#{% else %}#}
+{#    <h2>Nothing's been found</h2>#}
+{#{% endif %}#}
 {% endblock %}

@@ -25,17 +25,16 @@
     <div class="col-4 text-right">
         <p style="font-size: 22px; color: grey;">Total votes: <br /> {{ product.votes_total }}</p><br />
         <p style="font-size: 12px; color: lightgrey;">Last updated: {{ product.pub_date }}</p>
-{#        <a href="javascript:{document.getElementById('upvote{{ product.id }}').submit()}"><button class="btn btn-primary btn-sm-3"><span class="oi oi-caret-top"></span> Upvote ({{ product.votes_total }})</button></a>#}
     </div>
     </div>
     <hr>
 
 
 
-<form id="upvote{{ product.id }}" method="POST" action="{% url 'upvote' product.id %}">
-{% csrf_token %}
-<input type="hidden">
-</form>
+{#<form id="upvote{{ product.id }}" method="POST" action="{% url 'upvote' product.id %}">#}
+{#{% csrf_token %}#}
+{#<input type="hidden">#}
+{#</form>#}
 {% endfor %}
 
 

@@ -12,19 +12,21 @@
         <img src="{{ product.image.url }}" class="img-fluid" height="100" width="500"/>
     </div>
     <div class="col-4">
+        <p>Hunted by: <strong>{{ product.hunter.username }}</strong></p>
+        <p>Date: <strong>{{ product.pub_date_pretty }}</strong></p>
         <a href="javascript:{document.getElementById('upvote').submit()}"><button class="btn-primary btn"> Upvote ({{ product.votes_total }})</button></a>
     </div>
 </div>
-
-<div class="row pt-3">
-    <div class="col-4">
-        <h5>Hunted by {{ product.hunter.username }}</h5>
-    </div>
-    <div class="col-4 text-right">
-        <h5><span class="oi oi-clock"></span>  {{ product.pub_date_pretty }}</h5>
-    </div>
-
-</div>
+<br />
+{#<div class="row pt-3">#}
+{#    <div class="col-4">#}
+{#        <h5>Hunted by {{ product.hunter.username }}</h5>#}
+{#    </div>#}
+{#    <div class="col-4 text-right">#}
+{#        <h5> {{ product.pub_date_pretty }}</h5>#}
+{#    </div>#}
+{##}
+{#</div>#}
 
 <div class="row">
     <div class="col-8">
