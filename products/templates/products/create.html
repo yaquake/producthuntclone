@@ -6,21 +6,29 @@
     <br />
     <br />
 {% endif %}
-<div class="container text-center">
+<div class="container col-6  text-center">
 <h1>Create!</h1><br />
-    <div class="row justify-content-center">
+    <div class="justify-content-center">
     <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data" class="form-signin">
     {% csrf_token %}
-    <div class="form-label-group row">
+    <div class="form-label-group">
         <input type="text" name="title" class="form-control" placeholder="Title" required autofocus /><br />
-    </div><br />
-    <div class="form-label-group row">
+    </div>
+    <div class="form-label-group">
 {#        <input type="textarea" name="body" class="form-control" placeholder="Text" required /><br />#}
         <textarea class="form-control" aria-label="With textarea" name="body" placeholder="Text" required></textarea>
     </div><br />
-    <div class="form-label-group row">
+    <div class="form-label-group">
         <input type="text" name="url" class="form-control" placeholder="URL" required /><br />
-    </div><br />
+    </div>
+        <div class="form-group">
+  <select class="form-control" name="sel1">
+    <option value="entertainment">Entertainment</option>
+    <option value="work">Work</option>
+    <option value="home">Home</option>
+    <option value="rest">Rest</option>
+  </select>
+</div><br />
     <div class="custom-file form-label-group row">
         <input type="file" name="icon" class="custom-file-input" id="customFile">
         <label class="custom-file-label" for="customFile">Choose icon</label>

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Search:</h1><br />
+
+    <form method="POST" action="{% url 'search' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlInput1">What to search?</label>
+    <input type="text" name = 'pole' class="form-control" id="exampleFormControlInput1" placeholder="Type your text here:" required autofocus/>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+          <label class="form-check-label" for="gridRadios1">
+            Search by title
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+          <label class="form-check-label" for="gridRadios2">
+            Search by description
+          </label>
+        </div>
+  </div><br />
+  <input class="btn btn-primary" type="submit" value="Search!" />
+</form>
+<br />
+
+
+{% if result %}
+<h2>Search results:</h2><hr>
+{% for product in result.all %}
+    <div class="row pt-3">
+    <div class="col-2" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer">
+        <img src="{{ product.icon.url }}" class="image-fluid img-thumbnail"/>
+    </div>
+    <div class="col-6" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer">
+        <h2>{{ product.title }}</h2>
+        <p>{{ product.summary }}</p>
+
+    </div>
+    <div class="col-3 text-right" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer">
+        <a href="javascript:{document.getElementById('upvote{{ product.id }}').submit()}"><button class="btn btn-primary btn-sm-3">Upvote ({{ product.votes_total }})</button></a>
+    </div>
+    </div>
+    <hr>
+
+
+
+<form id="upvote{{ product.id }}" method="POST" action="{% url 'upvote' product.id %}">
+{% csrf_token %}
+<input type="hidden">
+</form>
+{% endfor %}
+{% else %}
+    <h2>Nothing's been found</h2>
+{% endif %}
+{% endblock %}
