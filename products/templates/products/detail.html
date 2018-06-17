@@ -16,8 +16,8 @@
         <img src="{{ product.image.url }}" class="img-fluid" height="100" width="500"/>
     </div>
     <div class="col-4 text-right">
-        <p>Hunted by: <strong>{{ product.hunter.username }}</strong></p>
-        <p>Date: <strong>{{ product.pub_date_pretty }}</strong></p>
+        <p><span class="oi oi-magnifying-glass"></span> Found by: <strong>{{ product.hunter.username }}</strong></p>
+        <p><span class="oi oi-clock"></span> Date: <strong>{{ product.pub_date_pretty }}</strong></p>
         {% if username in product.votenames %}
             <a href="javascript:{document.getElementById('upvote').submit()}"><button class="btn-primary btn" disabled> Upvote ({{ product.votes_total }})</button></a>
         {% else %}

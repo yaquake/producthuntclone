@@ -9,7 +9,6 @@ def home(request):
 
     if request.method == 'GET':
         product_cat = request.GET.get('cat', '')
-        print(product_cat)
         products = Product.objects.filter(category__contains=product_cat).order_by('-pub_date')
         return render(request, 'products/home.html', {'title': 'Product Finder', 'products': products, 'product_list': product_cat})
     else:
@@ -17,7 +16,7 @@ def home(request):
         return render(request, 'products/home.html', {'title': 'Product Finder', 'products': products})
 
 
-@login_required(login_url="/accounts/signup")
+@login_required(login_url="/accounts/login")
 def create(request):
     if request.method == 'POST':
         if request.POST['title'] and request.POST['body'] and request.POST['url'] and request.FILES['icon'] and request.FILES['image']:
@@ -37,10 +36,11 @@ def create(request):
            return redirect('/products/' + str(product.id))
 
         else:
-            return render(request, 'products/create.html', {'error': 'All field are required!', 'title': 'Create a new product'})
+            return render(request, 'products/create.html', {'error': 'All field are required!',
+                                                            'title': 'Product Finder || Create a new product'})
 
     else:
-        return render(request, 'products/create.html', {'title': 'Create a new product'})
+        return render(request, 'products/create.html', {'title': 'Product Finder || Create a new product'})
 
 
 def detail(request, product_id):
@@ -49,11 +49,10 @@ def detail(request, product_id):
                                                     'username': str(User.username)})
 
 
-@login_required(login_url="/accounts/signup")
+@login_required(login_url="/accounts/login")
 def upvote(request, product_id):
     if request.method == 'POST':
         product = get_object_or_404(Product, pk=product_id)
-        print(str(User.username))
         if str(User.username) not in product.votenames:
             product.votes_total += 1
             product.votenames += " " + str(User.username)
@@ -75,6 +74,10 @@ def search(request):
                                                             'search': "Search result:"})
     else:
         return render(request, "products/search.html", {'title': 'Product Finder || Search', 'search': ''})
+
+
+
+
 
 
 
