@@ -3,15 +3,23 @@
 
 
 <h2>Products list: {{ product_list }}</h2>
-<a href="{% url 'home' %}">[ All ]</a>
-<a href="{% url 'home' %}?cat=Entertainment">[ Entertainment ]</a>
-<a href="{% url 'home' %}?cat=Work">[ Work ]</a>
-<a href="{% url 'home' %}?cat=Home">[ Home ]</a>
-<a href="{% url 'home' %}?cat=Rest">[ Rest ]</a>
+<div class="row">
+    <div class="col-5">
+        <a href="{% url 'home' %}">[ All ]</a>
+        <a href="{% url 'home' %}?cat=Entertainment">[ Entertainment ]</a>
+        <a href="{% url 'home' %}?cat=Work">[ Work ]</a>
+        <a href="{% url 'home' %}?cat=Home">[ Home ]</a>
+        <a href="{% url 'home' %}?cat=Rest">[ Rest ]</a>
+    </div>
+    <div class="col-7 text-right">
+{#        Hello#}
+    </div>
+</div>
 
 
-    <hr>
+
 {% for product in products.all %}
+    <hr>
     <div class="row pt-3">
     <div class="col-2" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer">
         <img src="{{ product.icon.url }}" class="image-fluid img-thumbnail"/>
@@ -23,11 +31,11 @@
 
     </div>
     <div class="col-4 text-right">
-        <p style="font-size: 22px; color: grey;">Total votes: <br /> {{ product.votes_total }}</p><br />
+        <p style="font-size: 22px; color: grey;">Total votes: </p><p style="color: lightblue; font-size: 26px;"> {{ product.votes_total }}</p><br />
         <p style="font-size: 12px; color: lightgrey;">Last updated: {{ product.pub_date }}</p>
     </div>
     </div>
-    <hr>
+
 
 
 

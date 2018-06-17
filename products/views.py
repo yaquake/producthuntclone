@@ -11,10 +11,10 @@ def home(request):
         product_cat = request.GET.get('cat', '')
         print(product_cat)
         products = Product.objects.filter(category__contains=product_cat).order_by('-pub_date')
-        return render(request, 'products/home.html', {'title': 'Product hunt', 'products': products, 'product_list': product_cat})
+        return render(request, 'products/home.html', {'title': 'Product Finder', 'products': products, 'product_list': product_cat})
     else:
         products = Product.objects.order_by('-pub_date')
-        return render(request, 'products/home.html', {'title': 'Product hunt', 'products': products})
+        return render(request, 'products/home.html', {'title': 'Product Finder', 'products': products})
 
 
 @login_required(login_url="/accounts/signup")
@@ -45,7 +45,8 @@ def create(request):
 
 def detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    return render(request, 'products/detail.html', {"product": product, 'title': 'Product Hunt || ' + product.title})
+    return render(request, 'products/detail.html', {"product": product, 'title': 'Product Finder || ' + product.title,
+                                                    'username': str(User.username)})
 
 
 @login_required(login_url="/accounts/signup")
@@ -66,14 +67,14 @@ def search(request):
         where = request.POST['gridRadios']
         if where == "option1":
             result = Product.objects.filter(title__icontains=what)
-            return render(request, "products/search.html", {"result": result, 'title': 'Product Hunt || Search',
+            return render(request, "products/search.html", {"result": result, 'title': 'Product Finder || Search',
                                                             'search': "Search result:"})
         if where == "option2":
             result = Product.objects.filter(body__icontains=what)
-            return render(request, "products/search.html", {"result": result, 'title': 'Product Hunt || Search',
+            return render(request, "products/search.html", {"result": result, 'title': 'Product Finder || Search',
                                                             'search': "Search result:"})
     else:
-        return render(request, "products/search.html", {'title': 'Product Hunt || Search', 'search': ''})
+        return render(request, "products/search.html", {'title': 'Product Finder || Search', 'search': ''})
 
 
 

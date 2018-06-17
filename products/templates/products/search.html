@@ -29,8 +29,9 @@
 
 
 {#{% if result %}#}
-<h2>{{ search }}</h2><hr>
+<h2>{{ search }}</h2>
 {% for product in result.all %}
+    <hr>
     <div class="row pt-3">
     <div class="col-2" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer">
         <img src="{{ product.icon.url }}" class="image-fluid img-thumbnail"/>
@@ -44,7 +45,7 @@
         <a href="javascript:{document.getElementById('upvote{{ product.id }}').submit()}"><button class="btn btn-primary btn-sm-3">Upvote ({{ product.votes_total }})</button></a>
     </div>
     </div>
-    <hr>
+
 
 
 

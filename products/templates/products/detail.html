@@ -1,20 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="row">
-    <div class="col-10">
+
+    <div class="row">
+    <div class="col-6">
         <a href="{{ product.url }}"><h1>{{ product.title }}</h1></a>
     </div>
-</div>
+    <div class="col-6 text-right">
+        <h2>Total votes: {{ product.votes_total }}</h2>
+    </div>
+</div><hr>
 
 <div class="row">
     <div class="col-8">
         <img src="{{ product.image.url }}" class="img-fluid" height="100" width="500"/>
     </div>
-    <div class="col-4">
+    <div class="col-4 text-right">
         <p>Hunted by: <strong>{{ product.hunter.username }}</strong></p>
         <p>Date: <strong>{{ product.pub_date_pretty }}</strong></p>
-        <a href="javascript:{document.getElementById('upvote').submit()}"><button class="btn-primary btn"> Upvote ({{ product.votes_total }})</button></a>
+        {% if username in product.votenames %}
+            <a href="javascript:{document.getElementById('upvote').submit()}"><button class="btn-primary btn" disabled> Upvote ({{ product.votes_total }})</button></a>
+        {% else %}
+            <a href="javascript:{document.getElementById('upvote').submit()}"><button class="btn-primary btn"> Upvote ({{ product.votes_total }})</button></a>
+
+        {% endif %}
     </div>
 </div>
 <br />
