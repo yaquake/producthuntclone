@@ -8,6 +8,7 @@
 {% endif %}
 <div class="container col-6  text-center">
 <h1>Create a product</h1><br />
+    <h6 style="color: red;">{{ create_error }}</h6><br />
     <div class="justify-content-center">
     <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data" class="form-signin">
     {% csrf_token %}

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from products.models import Product
 
+
 def signup(request):
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:

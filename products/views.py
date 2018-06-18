@@ -6,19 +6,36 @@ from django.contrib.auth.models import User
 
 
 def home(request):
-
+    page_quantity = Product.objects.all().count()
+    if page_quantity % 5 == 0:
+        pages = page_quantity / 5
+    else:
+        pages = page_quantity // 5 + 1
+    list_pages = [x for x in range(1, pages + 1)]
     if request.method == 'GET':
         product_cat = request.GET.get('cat', '')
-        products = Product.objects.filter(category__contains=product_cat).order_by('-pub_date')
-        return render(request, 'products/home.html', {'title': 'Product Finder', 'products': products, 'product_list': product_cat})
+        # page = request.GET.get('page', '')
+        # if page is '':
+        #     page = '1'
+        # x = int(page)
+        products = Product.objects.filter(category__contains=product_cat).order_by('-pub_date') #[5 * (x - 1): 5 * x]
+        return render(request, 'products/home.html', {'title': 'Product Finder', 'products': products,
+                                                      'product_list': product_cat, 'pages': list_pages})
     else:
         products = Product.objects.order_by('-pub_date')
-        return render(request, 'products/home.html', {'title': 'Product Finder', 'products': products})
+        return render(request, 'products/home.html', {'title': 'Product Finder', 'products': products,
+                                                      'pages': list_pages})
 
 
 @login_required(login_url="/accounts/login")
 def create(request):
     if request.method == 'POST':
+        name = request.POST['title']
+        if Product.objects.filter(title__icontains=name) is not None:
+            create_error = 'A product with "' + name + '" name probably exists'
+            return render(request, 'products/create.html', {'title': 'Product Finder || Create a new product',
+                                                            'create_error': create_error})
+
         if request.POST['title'] and request.POST['body'] and request.POST['url'] and request.FILES['icon'] and request.FILES['image']:
            product = Product()
            product.title = request.POST['title']
